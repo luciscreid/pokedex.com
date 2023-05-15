@@ -26,21 +26,21 @@ function carregaJson(pokedex) {
 
   cardEl.className="cardPokemon";
   imgCardEl.className="gif-card";
-  cardBody.className="car-Body";
-  nomeCard.className="nome__card";
+  cardBody.className="card-body";  
   numeroCard.className="number__card";
+  nomeCard.className="nome__card";
   tipoCard.className="type__card";
 
   imgCardEl.setAttribute("src", `./json/images/00${primeiroPokemon.id}.png`);
+  nomeCard.innerText = primeiroPokemon.name.english;
+  numeroCard.innerText = primeiroPokemon.id;
+  tipoCard.innerText = primeiroPokemon.type[0];
 
   cardEl.appendChild(imgCardEl);  
   cardEl.appendChild(cardBody);
 
   cardBody.appendChild(numeroCard);
   cardBody.appendChild(nomeCard);
-
-  nomeCard.innerText ="teste";
-
   cardBody.appendChild(tipoCard);
 
   console.log(primeiroPokemon.type[0]);
