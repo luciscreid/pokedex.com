@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pokemon Shoop</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box1">
+        <!-- CABECALHO -->
+        <header class="header">
+          <nav class="menu">
+            <ul class="menu__lista">
+              <li class="menu__item" href="default.asp">Home</li>
+              <li class="menu__item" href="index.html">Pokedex</li>
+              <li class="menu__item" href="default.asp">Videogames</li>
+              <li class="menu__item" href="default.asp">GCC Pokemon</li>
+              <li class="menu__item" href="default.asp">TV Pokemon</li>
+              <li class="menu__item" href="default.asp">Pay!Pokemon</li>
+              <li class="menu__item" href="default.asp">News</li>
+            </ul>
+          </nav>
+        </header>
+      </div>
+      <div class="box__body">
+        <div class="box2">
+          <div class="box__pesquisa">
+            <!-- BUSCA DO POKEMON -->
+            <div class="busca">
+              <input
+                id="barra__busca"
+                type="text"
+                name="buscaPokemon"
+                placeholder="search your Pokemon!"
+              />
+              <img
+                class="imagem-busca"
+                src="imagens\icon.png"
+                alt="Ícone de pesquisa"
+              />
+            </div>
+
+            <!-- CLASSIFICAR ITENS POR: -->
+            <div class="classificar">
+              <select class="opcoes">
+                <option>Ascending</option>
+                <option>outra opcao</option>
+                <option>outra opcao</option>
+              </select>
+              <div id="tal-a-tal">
+                <p class="de-ate">from</p>
+                <input class="insert__num" type="text" name="numInicial" />
+                <p class="de-ate">to</p>
+                <input class="insert__num" type="text" name="numFinal" />
+              </div>
+            </div>
+
+            <!-- CLASSIFICAR POR CARACTERISTICAS -->
+            <div class="classificarInfo">
+              <nav class="menuClassificar">
+                <ul class="menuClassificar__lista">
+                  <li class="menuClassificar_item">
+                    <select class="classificar__opcoes">
+                      <option class="menu__classificar_opcoes">Type</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                    </select>
+                  </li>
+                  <li class="menuClassificar_item">
+                    <select class="classificar__opcoes">
+                      <option class="menu__classificar_opcoes">
+                        Weaknesses
+                      </option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                    </select>
+                  </li>
+                  <li class="menuClassificar_item">
+                    <select class="classificar__opcoes">
+                      <option class="menu__classificar_opcoes">Ability</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                    </select>
+                  </li>
+                  <li class="menuClassificar_item">
+                    <select class="classificar__opcoes">
+                      <option class="menu__classificar_opcoes">Height</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                    </select>
+                  </li>
+                  <li class="menuClassificar_item">
+                    <select class="classificar__opcoes">
+                      <option class="menu__classificar_opcoes">Weight</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                      <option class="menu__classificar_opcoes">opcao</option>
+                    </select>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <!-- CARD DOS POKEMONS -->
+          <div class="card">
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+            <div class="cardPokemon">
+              <img src="/gifs/.gif" class="gif-card" alt="..." />
+              <div class="card-body">
+                <p class="number__card">Nº000</p>
+                <p class="nome__card">Pikachu</p>
+                <p class="type__card">Eletric</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="box3">
+          <!-- informacoes pokemom -->
+          <div class="pokemon__img__e__genero">
+            <div class="img-pokemon">
+              <img src="imagens\395.png" class="img-pokemon-info" alt="..." />
+            </div>
+            <div class="pokemon__genero">
+              <img
+                src="imagens\icon-masculino.png"
+                id="img-masculino"
+                alt="..."
+              />
+              <img
+                src="imagens\icon-feminino.png"
+                id="img-feminino"
+                alt="..."
+              />
+            </div>
+          </div>
+          <div class="info-pokemon">
+            <p id="numero__info">#395</p>
+            <h1 class="nome__info">Empoleon</h1>
+            <p id="especie__info">Emperor Pokemon</p>
+            <div id="type__box__info">
+              <p id="type__info">Water</p>
+              <p id="type__info2">Steel</p>
+            </div>
+
+            <h2 class="info__geral__titulo">POKÉDEX ENTRY</h2>
+            <p id="info__geral">
+              It swins as fast a jet boat. The edges of its wings are sharp and
+              can slice apart drifting ice.
+            </p>
+            <h2 class="info__geral__titulo">abilities</h2>
+            <ul class="abilites">
+              <li class="abilites__info__1">Torrent</li>
+              <li class="abilites__info__2">Defiant</li>
+            </ul>
+            <div id="box__info">
+              <h2 class="info__geral__titulo">Height</h2>
+              <p class="info">1.7m</p>
+              <h2 class="info__geral__titulo">Weight</h2>
+              <p class="info">84.5Kg</p>
+              <h2 class="info__geral__titulo">Weaknesses</h2>
+              <img src="local/da/imagem" class="fraquezas" alt="..." />
+
+              <h2 class="info__geral__titulo">base exp</h2>
+              <p class="info">239</p>
+            </div>
+            <div class="stats">
+              <div class="box__titulo__stats">
+                <h2 class="info__geral__titulo">stats</h2>
+              </div>
+              <div class="box__stats__atributo">
+                <ul class="stats__lista__atributo">
+                  <li class="stats__atributo">HP</li>
+                  <li class="stats__atributo">ATK</li>
+                  <li class="stats__atributo">DEF</li>
+                  <li class="stats__atributo">SpA</li>
+                  <li class="stats__atributo">SpO</li>
+                  <li class="stats__atributo">SPD</li>
+                  <li class="stats__atributo">TOT</li>
+                </ul>
+              </div>
+              <div id="box__stats__valor__atributo">
+                <ul class="stats__lista__valor__atributo">
+                  <li class="stats__valor__atributo">84</li>
+                  <li class="stats__valor__atributo">86</li>
+                  <li class="stats__valor__atributo">88</li>
+                  <li class="stats__valor__atributo">111</li>
+                  <li class="stats__valor__atributo">101</li>
+                  <li class="stats__valor__atributo">60</li>
+                  <li class="stats__valor__atributo">530</li>
+                </ul>
+              </div>
+            </div>
+            <div class="evolution">
+              <h2 class="info__geral__titulo">EVOLUTION</h2>
+              <img src="local/da/imagem" class="evolucao-img" alt="..." /> Lvl
+              16
+              <img src="local/da/imagem" class="evolucao-img" alt="..." /> Lvl
+              36
+              <img src="" class="img-pokemon-info-level" alt="..." />
+            </div>
+            <div class="proximoEAnterior">
+              <ul class="proximoEAnterior__list">
+                <li class="nome__proximoEAnterior">Prinplup</li>
+                <li class="numero__proximoEAnterior">#394</li>
+                <li class="numero__proximoEAnterior">#396</li>
+                <li class="nome__proximoEAnterior">Starly</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div>
+    <div class="cardPokemom">
+      <img src="local imagen" class="img-card" alt="..." />
+      <div class="card-body">
+        <h2>Numero</h2>
+        <h1>Nome</h1>
+        <p>Tipo</p>
+      </div>
+    </div> -->
+</html>
