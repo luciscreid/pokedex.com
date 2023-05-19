@@ -21,10 +21,8 @@ function carregaJson(pokedex) {
   let ultimaPagina = numeroDePaginas;
 
   var search = location.search;
-  console.log(search);
   var searchSplit = search.split("=");
   let numeroSearch = searchSplit[1];
-  console.log(numeroSearch);
 
   search = quandoNaoTemPagina(search, numeroSearch);
 
@@ -67,6 +65,29 @@ function carregaJson(pokedex) {
 
     imprimeCard(paginaAtual, pokedex, cardListEl);
   });
+
+
+
+  let paginaAnterior = paginaAtual -1;
+  let proximaPagina = paginaAtual +1;
+
+  const numerosDeNavegacao = document.getElementById("numerosDeNavegacao")
+
+  const numeroPaginaAterior = document.createElement("p");
+  const numeroPaginaAtual = document.createElement("p");
+  const numeroProximaPagina = document.createElement("p");
+
+  numeroPaginaAterior.className = "numeroPaginaAnterior";
+  numeroPaginaAtual.className = "numeroPaginaAtual";
+  numeroProximaPagina.className = "numeroProximaPagina";
+
+  numerosDeNavegacao.appendChild(numeroPaginaAterior);
+  numerosDeNavegacao.appendChild(numeroPaginaAtual);
+  numerosDeNavegacao.appendChild(numeroProximaPagina);
+
+  numeroPaginaAterior.innerText = paginaAnterior;
+  numeroPaginaAtual.innerText = paginaAtual;
+  numeroProximaPagina.innerText = proximaPagina;
 }
 
 function carregaAPaginaAtual() {
