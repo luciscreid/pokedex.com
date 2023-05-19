@@ -22,6 +22,7 @@ function carregaJson(pokedex) {
   let paginaAtual = 1;
   let numeroDePaginas = pokedex.length / MaxCardPorPagina;
   numeroDePaginas = Math.round(numeroDePaginas);
+  let ultimaPagina = numeroDePaginas;
 
   var apertouProx = false;
   var apertouAnt = false;
@@ -30,35 +31,49 @@ function carregaJson(pokedex) {
   var locationSearch;
   var search = location.search;
 
+  //botãoooooooooooooooooooo
+  const botaoProxAnt = document.getElementById("botaoProxAnt");
+
+  const botaoProxEl = document.createElement("button");
+  const botaoAntEl = document.createElement("button");
+
+  botaoAntEl.className = "botaoAnt";
+  botaoProxEl.className = "botaoProx";
+
+  botaoProxAnt.appendChild(botaoAntEl);
+  botaoProxAnt.appendChild(botaoProxEl);
+
+  botaoAntEl.innerText = "Anterior";
+  botaoProxEl.innerText = "Proximo";
+
+  botaoProxEl.addEventListener("click", function () {
+    if (paginaAtual < numeroDePaginas) {
+      paginaAtual++;
+      location.search = "?pagina=" + paginaAtual;
+      imprimeCard(paginaAtual, pokedex, cardListEl);
+    }
+  });
+
+  botaoAntEl.addEventListener("click", function () {
+    if (paginaAtual >= 2) {
+      paginaAtual--;
+      location.search = "?pagina=" + paginaAtual;
+    }
+
+    imprimeCard(paginaAtual, pokedex, cardListEl);
+  });
+
   search = quandoNaoTemPagina(search);
 
   paginaAtual = carregaAPaginaAtual();
 
+  if (paginaAtual > numeroDePaginas) {
+    location.search = "?pagina=" + ultimaPagina;
+  }
+
   imprimeCard(paginaAtual, pokedex, cardListEl);
+
 }
-
-const botaoProxAnt = document.getElementById("botaoProxAnt");
-
-const botaoProxEl = document.createElement("button");
-const botaoAntEl = document.createElement("button");
-
-botaoAntEl.className = "botaoAnt";
-botaoProxEl.className = "botaoProx";
-
-botaoProxAnt.appendChild(botaoAntEl);
-botaoProxAnt.appendChild(botaoProxEl);
-
-botaoAntEl.innerText = "Anterior";
-botaoProxEl.innerText = "Proximo";
-
-botaoProxEl.addEventListener("click", function () {});
-
-botaoAntEl.addEventListener("click", function () {
-  paginaAtual--;
-  locationSearch = "?pagina=" + paginaAtual;
-  imprimeCard(paginaAtual, pokedex, cardListEl);
-  location.search = locationSearch;
-});
 
 function carregaAPaginaAtual() {
   var search = location.search;
@@ -66,7 +81,6 @@ function carregaAPaginaAtual() {
   numeroPagina = search.split("=");
 
   paginaAtual = Number(numeroPagina[1]);
-  console.log(paginaAtual);
   return paginaAtual;
 }
 
