@@ -10,115 +10,116 @@ function carregaJson(pokedex) {
   console.log(pokedex);
 
   // const { oitavoPokemon, segundoPokemon } = old(pokedex);
-  
+
   const primeiroPokemon = pokedex[0];
   const cardListEl = document.getElementById("cardList");
+  const botaoProxAnt = document.getElementById("botaoProxAnt");
 
-  // add card 
+  const botaoProxEl = document.createElement("button");
+  const botaoAntEl = document.createElement("button");
+
+  botaoAntEl.className = "botaoAnt";
+  botaoProxEl.className = "botaoProx";
+
+  botaoProxAnt.appendChild(botaoAntEl);
+  botaoProxAnt.appendChild(botaoProxEl);
+
+  botaoAntEl.innerText = "Anterior";
+  botaoProxEl.innerText = "Proximo";
+
+  let numeroSearch = 1;
+  let numeroDeCard = 0;
+  let MaxCardPorPagina = 30;
+  let numeroDaPagina = 0;
+  var search = location.search;
+
+  let paginaAtual = 1;
+  let numeroDePaginas = pokedex.length / MaxCardPorPagina;
+  numeroDePaginas = Math.round(numeroDePaginas);
+
+  var apertouProx = false;
+  var apertouAnt = false;
+
+  var numeroPagina;
+  var locationSearch;
+
+  search = quandoNaoTemPagina(search);
+
+  numeroPagina = search.split("=");
+
+  paginaAtual = Number(numeroPagina[1]);
+  console.log(paginaAtual);
+
+  imprimeCard(paginaAtual, pokedex, cardListEl);
+}
+
+botaoProxEl.addEventListener("click", function () {
+  numeroDaPagina++;
+  locationSearch = "?pagina=" + paginaAtual;
+  imprimeCard(paginaAtual, pokedex, cardListEl);
+  location.search = locationSearch;
+  numeroPagina[1] = numeroDaPagina;
+});
+
+console.log(numeroPagina);
+console.log(numeroDaPagina);
+console.log(paginaAtual);
+console.log();
+
+botaoAntEl.addEventListener("click", function () {
+  paginaAtual--;
+  locationSearch = "?pagina=" + paginaAtual;
+  imprimeCard(paginaAtual, pokedex, cardListEl);
+  location.search = locationSearch;
+});
+
+function zeroPad(num, places) {
+  return String(num).padStart(places, "0");
+}
+
+function quandoNaoTemPagina(search) {
+  if (search == "") {
+    search = "?pagina=1";
+    location.search = search;
+    numeroDaPagina = 1;
+  }
+  return search;
+}
+
+function imprimeCard(paginaAtual, pokedex, cardListEl) {
+  for (let i = (paginaAtual - 1) * 30; i <= paginaAtual * 30 - 1; i++) {
+    const pokemonAtual = pokedex[i];
+    cardListEl.appendChild(criaCard(pokemonAtual));
+  }
+}
+
+function criaCard(pokemon) {
   const cardEl = document.createElement("div");
   const imgCardEl = document.createElement("img");
-  const cardBody = document.createElement("div");
-  const numeroCard  = document.createElement("p");
-  const nomeCard  = document.createElement("p");
-  const tipoCard  = document.createElement("p");
-  
+  const cardBodyEl = document.createElement("div");
+  const numeroCardEl = document.createElement("p");
+  const nomeCardEl = document.createElement("p");
+  const tipoCardEl = document.createElement("p");
 
+  cardEl.className = "cardPokemon";
+  imgCardEl.className = "gif-card";
 
-  cardEl.className="cardPokemon";
-  imgCardEl.className="gif-card";
-  cardBody.className="card-body";  
-  numeroCard.className="number__card";
-  nomeCard.className="nome__card";
-  tipoCard.className="type__card";
+  cardBodyEl.className = "card-body";
+  numeroCardEl.className = "number__card";
+  nomeCardEl.className = "nome__card";
+  tipoCardEl.className = "type__card";
 
-  imgCardEl.setAttribute("src", `./json/images/00${primeiroPokemon.id}.png`);
-  nomeCard.innerText = primeiroPokemon.name.english;
-  numeroCard.innerText = primeiroPokemon.id;
-  tipoCard.innerText = primeiroPokemon.type[0];
+  imgCardEl.setAttribute("src", `./json/images/${zeroPad(pokemon.id, 3)}.png`);
+  nomeCardEl.innerText = pokemon.name.english;
+  numeroCardEl.innerText = pokemon.id;
+  tipoCardEl.innerText = pokemon.type[0];
 
-  cardEl.appendChild(imgCardEl);  
-  cardEl.appendChild(cardBody);
+  cardEl.appendChild(imgCardEl);
+  cardEl.appendChild(cardBodyEl);
 
-  cardBody.appendChild(numeroCard);
-  cardBody.appendChild(nomeCard);
-  cardBody.appendChild(tipoCard);
+  cardBodyEl.appendChild(numeroCardEl);
+  cardBodyEl.appendChild(nomeCardEl);
+  cardBodyEl.appendChild(tipoCardEl);
 
-  console.log(primeiroPokemon.type[0]);
-  console.log(primeiroPokemon.type[1]);
-  
-  cardListEl.appendChild(cardEl);
-
+  return cardEl;
 }
-function old(pokedex) {
-    const primeiroPokemon = pokedex[0];
-    const segundoPokemon = pokedex[1];
-    const terceiroPokemon = pokedex[2];
-    const quartoPokemon = pokedex[3];
-    const quintoPokemon = pokedex[4];
-    const sextoPokemon = pokedex[5];
-    const setimoPokemon = pokedex[6];
-    const oitavoPokemon = pokedex[7];
-    const nonoPokemon = pokedex[8];
-
-    console.log(primeiroPokemon);
-
-    const imgEl = document.getElementById("imagemPrincipal");
-    imgEl.setAttribute("src", `./json/images/00${primeiroPokemon.id}.png`);
-    const h1El = document.getElementById("nomePrincipal");
-    h1El.innerText = primeiroPokemon.name.english;
-
-    const imgEl1 = document.getElementById("pirmeiraImagemPokemon");
-    imgEl1.setAttribute("src", `./json/images/00${primeiroPokemon.id}.png`);
-
-    const h1El1 = document.getElementById("nome__card1");
-    h1El1.innerText = primeiroPokemon.name.english;
-
-    const imgEl2 = document.getElementById("segundaImgPokemon");
-    imgEl2.setAttribute("src", `./json/images/00${segundoPokemon.id}.png`);
-
-    const h1El2 = document.getElementById("nome__card2");
-    h1El2.innerText = segundoPokemon.name.english;
-
-    const imgEl3 = document.getElementById("terceiraImgPokemon");
-    imgEl3.setAttribute("src", `./json/images/00${terceiroPokemon.id}.png`);
-
-    const h1El3 = document.getElementById("nome__card3");
-    h1El3.innerText = terceiroPokemon.name.english;
-
-    const imgEl4 = document.getElementById("quartaImgPokemon");
-    imgEl4.setAttribute("src", `./json/images/00${quartoPokemon.id}.png`);
-
-    const h1El4 = document.getElementById("nome__card4");
-    h1El4.innerText = quartoPokemon.name.english;
-
-    const imgEl5 = document.getElementById("quintaImgPokemon");
-    imgEl5.setAttribute("src", `./json/images/00${quintoPokemon.id}.png`);
-
-    const h1El5 = document.getElementById("nome__card5");
-    h1El5.innerText = quintoPokemon.name.english;
-
-    const imgEl6 = document.getElementById("sextaImgPokemon");
-    imgEl6.setAttribute("src", `./json/images/00${sextoPokemon.id}.png`);
-
-    const h1El6 = document.getElementById("nome__card6");
-    h1El6.innerText = sextoPokemon.name.english;
-
-    const imgEl7 = document.getElementById("setimaImgPokemon");
-    imgEl7.setAttribute("src", `./json/images/00${setimoPokemon.id}.png`);
-
-    const h1El7 = document.getElementById("nome__card7");
-    h1El7.innerText = setimoPokemon.name.english;
-
-    const imgEl8 = document.getElementById("oitavaImgPokemon");
-    imgEl8.setAttribute("src", `./json/images/00${oitavoPokemon.id}.png`);
-
-    const h1El8 = document.getElementById("nome__card8");
-    h1El8.innerText = oitavoPokemon.name.english;
-
-    const imgEl9 = document.getElementById("nonaImgPokemon");
-    imgEl9.setAttribute("src", `./json/images/00${nonoPokemon.id}.png`);
-
-    const h1El9 = document.getElementById("nome__card9");
-    return { oitavoPokemon, segundoPokemon };
-}
-

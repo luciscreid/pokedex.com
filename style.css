@@ -228,7 +228,7 @@ p.type__card {
 }
 
 .box3 {
-  display: flex;
+  display: none;
   align-items: center;
   flex-direction: column;
   width: 30%;
