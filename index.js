@@ -13,25 +13,11 @@ function carregaJson(pokedex) {
 
   const primeiroPokemon = pokedex[0];
   const cardListEl = document.getElementById("cardList");
-  const botaoProxAnt = document.getElementById("botaoProxAnt");
-
-  const botaoProxEl = document.createElement("button");
-  const botaoAntEl = document.createElement("button");
-
-  botaoAntEl.className = "botaoAnt";
-  botaoProxEl.className = "botaoProx";
-
-  botaoProxAnt.appendChild(botaoAntEl);
-  botaoProxAnt.appendChild(botaoProxEl);
-
-  botaoAntEl.innerText = "Anterior";
-  botaoProxEl.innerText = "Proximo";
 
   let numeroSearch = 1;
   let numeroDeCard = 0;
   let MaxCardPorPagina = 30;
   let numeroDaPagina = 0;
-  var search = location.search;
 
   let paginaAtual = 1;
   let numeroDePaginas = pokedex.length / MaxCardPorPagina;
@@ -42,29 +28,30 @@ function carregaJson(pokedex) {
 
   var numeroPagina;
   var locationSearch;
+  var search = location.search;
 
   search = quandoNaoTemPagina(search);
 
-  numeroPagina = search.split("=");
-
-  paginaAtual = Number(numeroPagina[1]);
-  console.log(paginaAtual);
+  paginaAtual = carregaAPaginaAtual();
 
   imprimeCard(paginaAtual, pokedex, cardListEl);
 }
 
-botaoProxEl.addEventListener("click", function () {
-  numeroDaPagina++;
-  locationSearch = "?pagina=" + paginaAtual;
-  imprimeCard(paginaAtual, pokedex, cardListEl);
-  location.search = locationSearch;
-  numeroPagina[1] = numeroDaPagina;
-});
+const botaoProxAnt = document.getElementById("botaoProxAnt");
 
-console.log(numeroPagina);
-console.log(numeroDaPagina);
-console.log(paginaAtual);
-console.log();
+const botaoProxEl = document.createElement("button");
+const botaoAntEl = document.createElement("button");
+
+botaoAntEl.className = "botaoAnt";
+botaoProxEl.className = "botaoProx";
+
+botaoProxAnt.appendChild(botaoAntEl);
+botaoProxAnt.appendChild(botaoProxEl);
+
+botaoAntEl.innerText = "Anterior";
+botaoProxEl.innerText = "Proximo";
+
+botaoProxEl.addEventListener("click", function () {});
 
 botaoAntEl.addEventListener("click", function () {
   paginaAtual--;
@@ -72,6 +59,16 @@ botaoAntEl.addEventListener("click", function () {
   imprimeCard(paginaAtual, pokedex, cardListEl);
   location.search = locationSearch;
 });
+
+function carregaAPaginaAtual() {
+  var search = location.search;
+
+  numeroPagina = search.split("=");
+
+  paginaAtual = Number(numeroPagina[1]);
+  console.log(paginaAtual);
+  return paginaAtual;
+}
 
 function zeroPad(num, places) {
   return String(num).padStart(places, "0");
