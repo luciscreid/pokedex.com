@@ -11,25 +11,30 @@ function carregaJson(pokedex) {
 
   // const { oitavoPokemon, segundoPokemon } = old(pokedex);
 
-  const primeiroPokemon = pokedex[0];
   const cardListEl = document.getElementById("cardList");
 
-  let numeroSearch = 1;
-  let numeroDeCard = 0;
   let MaxCardPorPagina = 30;
-  let numeroDaPagina = 0;
 
   let paginaAtual = 1;
   let numeroDePaginas = pokedex.length / MaxCardPorPagina;
   numeroDePaginas = Math.round(numeroDePaginas);
   let ultimaPagina = numeroDePaginas;
 
-  var apertouProx = false;
-  var apertouAnt = false;
-
-  var numeroPagina;
-  var locationSearch;
   var search = location.search;
+  console.log(search);
+  var searchSplit = search.split("=");
+  let numeroSearch = searchSplit[1];
+  console.log(numeroSearch);
+
+  search = quandoNaoTemPagina(search, numeroSearch);
+
+  paginaAtual = carregaAPaginaAtual();
+
+  if (paginaAtual > numeroDePaginas) {
+    location.search = "?pagina=" + ultimaPagina;
+  }
+
+  imprimeCard(paginaAtual, pokedex, cardListEl);
 
   //botãoooooooooooooooooooo
   const botaoProxAnt = document.getElementById("botaoProxAnt");
@@ -62,17 +67,6 @@ function carregaJson(pokedex) {
 
     imprimeCard(paginaAtual, pokedex, cardListEl);
   });
-
-  search = quandoNaoTemPagina(search);
-
-  paginaAtual = carregaAPaginaAtual();
-
-  if (paginaAtual > numeroDePaginas) {
-    location.search = "?pagina=" + ultimaPagina;
-  }
-
-  imprimeCard(paginaAtual, pokedex, cardListEl);
-
 }
 
 function carregaAPaginaAtual() {
@@ -88,11 +82,12 @@ function zeroPad(num, places) {
   return String(num).padStart(places, "0");
 }
 
-function quandoNaoTemPagina(search) {
-  if (search == "") {
+function quandoNaoTemPagina(search, numeroSearch) {
+  if (search == "" || numeroSearch <= 0) {
     search = "?pagina=1";
     location.search = search;
     numeroDaPagina = 1;
+    paginaAtual = 1;
   }
   return search;
 }
