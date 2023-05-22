@@ -34,70 +34,17 @@ function carregaJson(pokedex) {
 
   imprimeCard(paginaAtual, pokedex, cardListEl);
 
-  //botãoooooooooooooooooooo
-  // const botaoProxAnt = document.getElementById("botaoProxAnt");
+  // botãoooooooooooooooooooo
+  paginaAtual = botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl);
 
-  // const botaoProxEl = document.createElement("button");
-  // const botaoAntEl = document.createElement("button");
+  numPaginacao(paginaAtual);
+}
 
-  // botaoAntEl.className = "botaoAnt";
-  // botaoProxEl.className = "botaoProx";
-
-  // botaoProxAnt.appendChild(botaoAntEl);
-  // botaoProxAnt.appendChild(botaoProxEl);
-
-  // botaoAntEl.innerText = "Anterior";
-  // botaoProxEl.innerText = "Proximo";
-
-  // botaoProxEl.addEventListener("click", function () {
-  //   if (paginaAtual < numeroDePaginas) {
-  //     paginaAtual++;
-  //     location.search = "?pagina=" + paginaAtual;
-  //     imprimeCard(paginaAtual, pokedex, cardListEl);
-  //   }
-  // });
-
-  // botaoAntEl.addEventListener("click", function () {
-  //   if (paginaAtual >= 2) {
-  //     paginaAtual--;
-  //     location.search = "?pagina=" + paginaAtual;
-  //   }
-
-  //   imprimeCard(paginaAtual, pokedex, cardListEl);
-  // });
-
+function numPaginacao(paginaAtual) {
   const numerosDeNavegacao = document.getElementById("numerosDeNavegacao");
   const numProxOpcoesPagina = 2;
   const numAntOpcoesPagina = -2;
 
-  let paginaAnterior = paginaAtual - 1;
-  let proximaPagina = paginaAtual + 1;
-
-  // const numeroPaginaAnterior = document.createElement("a");
-  // const numeroPaginaAtual = document.createElement("a");
-  // const numeroPaginaProxima = document.createElement("a");
-
-  // numeroPaginaAnterior.className = "numeroPagina";
-  
-  // numeroPaginaProxima.className = "numeroPagina";
-
-  
-
-  // numeroPaginaAnterior.innerText = paginaAnterior;
-  // numeroPaginaAtual.innerText = paginaAtual;
-  // numeroPaginaProxima.innerText = proximaPagina;
-
-  // numeroPaginaAnterior.addEventListener("click", function () {
-  //   if (paginaAnterior >= 1) {
-  //     location.search = "?pagina=" + paginaAnterior;
-  //   }
-  // });
-
-  // numeroPaginaProxima.addEventListener("click", function () {
-  //   if (proximaPagina <= numeroDePaginas) {
-  //     location.search = "?pagina=" + proximaPagina;
-  //   }
-  // });
 
   if (paginaAtual - 2 >= 1) {
     for (let i = 2; i > numAntOpcoesPagina; i--) {
@@ -120,6 +67,40 @@ function carregaJson(pokedex) {
     });
     numerosDeNavegacao.appendChild(numeroPagina);
   }
+}
+
+function botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl) {
+  const botaoProxAnt = document.getElementById("botaoProxAnt");
+
+  const botaoProxEl = document.createElement("button");
+  const botaoAntEl = document.createElement("button");
+
+  botaoAntEl.className = "botaoAnt";
+  botaoProxEl.className = "botaoProx";
+
+  botaoProxAnt.appendChild(botaoAntEl);
+  botaoProxAnt.appendChild(botaoProxEl);
+
+  botaoAntEl.innerText = "Anterior";
+  botaoProxEl.innerText = "Proximo";
+
+  botaoProxEl.addEventListener("click", function () {
+    if (paginaAtual < numeroDePaginas) {
+      paginaAtual++;
+      location.search = "?pagina=" + paginaAtual;
+      imprimeCard(paginaAtual, pokedex, cardListEl);
+    }
+  });
+
+  botaoAntEl.addEventListener("click", function () {
+    if (paginaAtual >= 2) {
+      paginaAtual--;
+      location.search = "?pagina=" + paginaAtual;
+    }
+
+    imprimeCard(paginaAtual, pokedex, cardListEl);
+  });
+  return paginaAtual;
 }
 
 function carregaAPaginaAtual() {
