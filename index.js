@@ -8,6 +8,9 @@ fetch("./json/pokedex.json")
 
 function carregaJson(pokedex) {
   console.log(pokedex);
+  a= new URLSearchParams(location.search)
+  console.log(a.get("pagina"));
+  console.log(a.get("search"));
 
   // const { oitavoPokemon, segundoPokemon } = old(pokedex);
 
@@ -15,7 +18,7 @@ function carregaJson(pokedex) {
 
   let MaxCardPorPagina = 30;
 
-  let paginaAtual = 1;
+  let paginaAtual = Number(a.get("pagina"));
   let numeroDePaginas = pokedex.length / MaxCardPorPagina;
   numeroDePaginas = Math.round(numeroDePaginas);
   let ultimaPagina = numeroDePaginas;
@@ -33,13 +36,18 @@ function carregaJson(pokedex) {
   }
 
   imprimeCard(paginaAtual, pokedex, cardListEl);
+  
+  
+  if (paginaAtual <= 2) {
+    paginaAtual = botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl);
+  } else {
+    numPaginacao(paginaAtual);
+    paginaAtual = botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl);
+  }
 
-  // botãoooooooooooooooooooo
-  paginaAtual = botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl);
-
-  numPaginacao(paginaAtual);
+  barrinha = document.getElementById("barra__busca");
+  barrinha.value = a.get("search");
 }
-
 function numPaginacao(paginaAtual) {
   const numerosDeNavegacao = document.getElementById("numerosDeNavegacao");
   const numProxOpcoesPagina = 2;
@@ -106,9 +114,9 @@ function botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl) {
 function carregaAPaginaAtual() {
   var search = location.search;
 
-  numeroPagina = search.split("=");
+  numeroPagina = a.get("pagina");
 
-  paginaAtual = Number(numeroPagina[1]);
+  paginaAtual = Number(numeroPagina);
   return paginaAtual;
 }
 
@@ -117,7 +125,7 @@ function zeroPad(num, places) {
 }
 
 function quandoNaoTemPagina(search, numeroSearch) {
-  if (search == "" || numeroSearch <= 0) {
+  if (a == "" || numeroSearch <= 0) {
     search = "?pagina=1";
     location.search = search;
     numeroDaPagina = 1;
