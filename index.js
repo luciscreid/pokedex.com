@@ -7,20 +7,18 @@ fetch("./json/pokedex.json")
   });
 
 function carregaJson(pokedex) {
-  console.log(pokedex);
-  a= new URLSearchParams(location.search)
+  var nomeTeste = "bobossauro";
+  a = new URLSearchParams(location.search);
   console.log(a.get("pagina"));
+  console.log(a.set("search", nomeTeste));
   console.log(a.get("search"));
-
-  // const { oitavoPokemon, segundoPokemon } = old(pokedex);
 
   const cardListEl = document.getElementById("cardList");
 
   let MaxCardPorPagina = 30;
 
   let paginaAtual = Number(a.get("pagina"));
-  let numeroDePaginas = pokedex.length / MaxCardPorPagina;
-  numeroDePaginas = Math.round(numeroDePaginas);
+  let numeroDePaginas = Math.round(pokedex.length / MaxCardPorPagina);
   let ultimaPagina = numeroDePaginas;
 
   var search = location.search;
@@ -32,27 +30,38 @@ function carregaJson(pokedex) {
   paginaAtual = carregaAPaginaAtual();
 
   if (paginaAtual > numeroDePaginas) {
-    location.search = "?pagina=" + ultimaPagina;
+    a.set("pagina", ultimaPagina);
+    a.set("search", nomeTeste); 
+    location.search = a.toString();
   }
 
   imprimeCard(paginaAtual, pokedex, cardListEl);
-  
-  
+
   if (paginaAtual <= 2) {
-    paginaAtual = botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl);
+    paginaAtual = botaoProxEAnt(
+      paginaAtual,
+      numeroDePaginas,
+      pokedex,
+      cardListEl
+    );
   } else {
     numPaginacao(paginaAtual);
-    paginaAtual = botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl);
+    paginaAtual = botaoProxEAnt(
+      paginaAtual,
+      numeroDePaginas,
+      pokedex,
+      cardListEl
+    );
   }
 
   barrinha = document.getElementById("barra__busca");
   barrinha.value = a.get("search");
 }
+
 function numPaginacao(paginaAtual) {
   const numerosDeNavegacao = document.getElementById("numerosDeNavegacao");
   const numProxOpcoesPagina = 2;
   const numAntOpcoesPagina = -2;
-
 
   if (paginaAtual - 2 >= 1) {
     for (let i = 2; i > numAntOpcoesPagina; i--) {
@@ -60,7 +69,9 @@ function numPaginacao(paginaAtual) {
       numeroPagina.className = "numeroPagina";
       numeroPagina.innerText = paginaAtual - i + " ";
       numeroPagina.addEventListener("click", function () {
-        location.search = "?pagina=" + (paginaAtual - i);
+        a.set("pagina", paginaAtual - i);
+        a.set("search", nomeTeste); 
+        location.search = a.toString();
       });
       numerosDeNavegacao.appendChild(numeroPagina);
     }
@@ -71,7 +82,9 @@ function numPaginacao(paginaAtual) {
     numeroPagina.className = "numeroPagina";
     numeroPagina.innerText = paginaAtual + i;
     numeroPagina.addEventListener("click", function () {
-      location.search = "?pagina=" + (paginaAtual + i);
+      a.set("pagina", paginaAtual + i);
+      a.set("search", nomeTeste); 
+      location.search = a.toString();
     });
     numerosDeNavegacao.appendChild(numeroPagina);
   }
@@ -90,12 +103,14 @@ function botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl) {
   botaoProxAnt.appendChild(botaoProxEl);
 
   botaoAntEl.innerText = "Anterior";
-  botaoProxEl.innerText = "Proximo";
+  botaoProxEl.innerText = "Próximo";
 
   botaoProxEl.addEventListener("click", function () {
     if (paginaAtual < numeroDePaginas) {
       paginaAtual++;
-      location.search = "?pagina=" + paginaAtual;
+      a.set("pagina", paginaAtual);
+      a.set("search", nomeTeste); 
+      location.search = a.toString();
       imprimeCard(paginaAtual, pokedex, cardListEl);
     }
   });
@@ -103,19 +118,21 @@ function botaoProxEAnt(paginaAtual, numeroDePaginas, pokedex, cardListEl) {
   botaoAntEl.addEventListener("click", function () {
     if (paginaAtual >= 2) {
       paginaAtual--;
-      location.search = "?pagina=" + paginaAtual;
+      a.set("pagina", paginaAtual);
+      a.set("search", nomeTeste); 
+      location.search = a.toString();
     }
 
     imprimeCard(paginaAtual, pokedex, cardListEl);
   });
+
   return paginaAtual;
 }
 
 function carregaAPaginaAtual() {
   var search = location.search;
-
+  a = new URLSearchParams(search);
   numeroPagina = a.get("pagina");
-
   paginaAtual = Number(numeroPagina);
   return paginaAtual;
 }
@@ -127,6 +144,8 @@ function zeroPad(num, places) {
 function quandoNaoTemPagina(search, numeroSearch) {
   if (a == "" || numeroSearch <= 0) {
     search = "?pagina=1";
+    a.set("pagina", "1");
+    a.set("search", nomeTeste); 
     location.search = search;
     numeroDaPagina = 1;
     paginaAtual = 1;
@@ -151,7 +170,6 @@ function criaCard(pokemon) {
 
   cardEl.className = "cardPokemon";
   imgCardEl.className = "gif-card";
-
   cardBodyEl.className = "card-body";
   numeroCardEl.className = "number__card";
   nomeCardEl.className = "nome__card";
@@ -164,7 +182,6 @@ function criaCard(pokemon) {
 
   cardEl.appendChild(imgCardEl);
   cardEl.appendChild(cardBodyEl);
-
   cardBodyEl.appendChild(numeroCardEl);
   cardBodyEl.appendChild(nomeCardEl);
   cardBodyEl.appendChild(tipoCardEl);
