@@ -25,10 +25,27 @@ function carregaJson(pokedex) {
   var search = location.search;
   var searchSplit = search.split("=");
   let numeroSearch = searchSplit[1];
-  
+  const botaoBusca = document.getElementById("botao__busca");
+  barrinha = document.getElementById("barra__busca");
+  barrinha.value = a.get("search");
+
+  botaoBusca.addEventListener("click", function () {
+    a.set("pagina", paginaAtual);
+    a.set("search", barrinha.value);
+    location.search = a.toString();
+  });
+
+  const input = document.getElementById("barra__busca");
+  input.addEventListener("keypress", function (evento) {
+    if (evento.key == "Enter") {
+      a.set("pagina", paginaAtual);
+      a.set("search", barrinha.value);
+      location.search = a.toString();
+    }
+  });
   for (let i = 0; i < pokedex.length; i++) {
     const pokemonAtual1 = pokedex[i];
-    if (pokemonAtual1.name.english == nomeSearch) {
+    if (pokemonAtual1.name.english.toLowerCase().includes(barrinha.value.toLowerCase()) == true) {
       paginaAtual = 1;
       pokemonLista.push(pokemonAtual1);
     }
@@ -38,13 +55,14 @@ function carregaJson(pokedex) {
     pokedex = pokemonLista;
   }
   
-
+  // .includes("tain")
   search = quandoNaoTemPagina(search, numeroSearch);
 
   paginaAtual = carregaAPaginaAtual();
 
   if (paginaAtual > numeroDePaginas) {
     a.set("pagina", ultimaPagina);
+    a.set("search", "bobossauro");
     location.search = a.toString();
   }
 
@@ -67,22 +85,7 @@ function carregaJson(pokedex) {
     );
   }
 
-  const botaoBusca = document.getElementById("botao__busca");
-  barrinha = document.getElementById("barra__busca");
-  barrinha.value = a.get("search");
-
-  botaoBusca.addEventListener("click", function () {
-    a.set("pagina", paginaAtual);
-    location.search = a.toString();
-  });
-
-  const input = document.getElementById("barra__busca");
-  input.addEventListener("keypress", function (evento) {
-    if (evento.key == "Enter") {
-      a.set("pagina", paginaAtual);
-      location.search = a.toString();
-    }
-  });
+  
 
   //aquiiiiiiiiiiiiiiiiiiiiiiii
 }
